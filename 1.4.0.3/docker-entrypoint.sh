@@ -20,7 +20,7 @@ then
     RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
     echo "rpcallowip=127.0.0.1" >> shadowcoin.conf
     echo "rpcuser=$RPCUSERNAME" >> shadowcoin.conf
-    echo "rpcuser=$RPCPASSWORD" >> shadowcoin.conf
+    echo "rpcpassword=$RPCPASSWORD" >> shadowcoin.conf
 fi
 
 if [ $(echo "$1" | cut -c1) = "-" ]; then
