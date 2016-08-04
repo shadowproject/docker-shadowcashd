@@ -3,14 +3,24 @@ set -e
 
 # copy latest blockchain
 cd $SHADOWCASH_DATA
-FILE="blockchain.zip"
 
-if [ ! -f $FILE ]
+if [ ! -f "blockchain.zip" ]
 then
-    echo "$FILE does not exists, downloading..."
+    echo "blockchain.zip does not exists, downloading..."
     curl -SLO https://github.com/shadowproject/blockchain/releases/download/latest/blockchain.zip
-    echo "$FILE downloaded, extracting..."
+    echo "blockchain.zip downloaded, extracting..."
     unzip blockchain.zip
+fi
+
+if [ ! -f "shadowcoin.conf" ]
+then
+    echo "shadowcoin.conf does not exists, creating..."
+    touch shadowcoin.conf
+    RPCUSERNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+    RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+    echo "rpcallowip=127.0.0.1" >> shadowcoin.conf
+    echo "rpcuser=$RPCUSERNAME" >> shadowcoin.conf
+    echo "rpcuser=$RPCPASSWORD" >> shadowcoin.conf
 fi
 
 if [ $(echo "$1" | cut -c1) = "-" ]; then
