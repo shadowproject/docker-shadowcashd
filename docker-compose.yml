@@ -1,0 +1,11 @@
+shadowcashd:
+  labels:
+    io.rancher.scheduler.affinity:host_label: run-shadow-mainnet=1
+  restart: always
+  image: ludx/shadowcashd:latest
+  ports:
+    - 51736:51736
+    - 51737:51737
+  volumes:
+    - /data/docker/shadowcash/data:/home/shadowcash/.shadowcoin
+
