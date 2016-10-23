@@ -4,12 +4,22 @@ Automatically downloads and uses the latest blockchain from [shadowproject/block
 
 ## Usage
 
+* Docker installed and running
+  * [install Docker](https://docs.docker.com/engine/installation/)
+* Server with at least 1GB memory
+
+
+## Quickstart
+
+To start a shadowcashd instance running the latest version:
+
 ```sh
 $ docker run -d --restart=always \
     -p 51736:51736 -p 51737:51737 \
-    -v /hostdatafolder:/home/shadowcash/.shadowcoin \
+    -v /CHANGETHISTOYOURHOSTDATAFOLDER:/home/shadowcash/.shadowcoin \
     --name shadowcashd ludx/shadowcashd
 ```
+
 
 ## License
 [License information](https://github.com/shadowproject/shadow/blob/master/COPYING) for the software contained in this image.
